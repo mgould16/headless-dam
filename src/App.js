@@ -26,7 +26,16 @@ function App() {
       const data = await response.json();
       
       console.log("Upload successful!", data);
-      alert("Image uploaded successfully!");
+      
+      // Display a styled success message instead of an alert
+      const successMessage = document.createElement("div");
+      successMessage.className = "fixed top-4 right-4 bg-green-500 text-white p-4 rounded shadow-lg";
+      successMessage.innerText = "✅ Image uploaded successfully!";
+      document.body.appendChild(successMessage);
+      
+      setTimeout(() => {
+        successMessage.remove();
+      }, 3000);
     } catch (error) {
       console.error("Upload failed", error);
       alert("Upload failed.");
