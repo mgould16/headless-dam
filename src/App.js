@@ -1,5 +1,4 @@
 import { useState } from "react";
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -27,7 +26,16 @@ function App() {
       const data = await response.json();
       
       console.log("Upload successful!", data);
-      alert("Image uploaded successfully!");
+      
+      // Display a styled success message instead of an alert
+      const successMessage = document.createElement("div");
+      successMessage.className = "fixed top-4 right-4 bg-green-500 text-white p-4 rounded shadow-lg";
+      successMessage.innerText = "✅ Image uploaded successfully!";
+      document.body.appendChild(successMessage);
+      
+      setTimeout(() => {
+        successMessage.remove();
+      }, 3000);
     } catch (error) {
       console.error("Upload failed", error);
       alert("Upload failed.");
@@ -35,45 +43,43 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex h-screen">
+      {/* Sidebar */}
+      <div className="w-64 bg-gray-800 text-white p-6 flex flex-col">
+        <h2 className="text-2xl font-bold mb-6">Headless DAM</h2>
+        <nav className="space-y-4">
+          <a href="#" className="block p-2 bg-gray-700 rounded">Dashboard</a>
+          <a href="#" className="block p-2 hover:bg-gray-700 rounded">Uploads</a>
+          <a href="#" className="block p-2 hover:bg-gray-700 rounded">Manage Tags</a>
+          <a href="#" className="block p-2 hover:bg-gray-700 rounded">Settings</a>
+        </nav>
+      </div>
 
-      {/* Upload Section */}
-      <div className="flex flex-col items-center justify-center p-8 bg-gray-100 min-h-screen">
+      {/* Main Content */}
+      <div className="flex-1 p-8 bg-gray-100">
         <h1 className="text-3xl font-bold mb-6">Upload an Image</h1>
         
-        <input 
-          type="file" 
-          className="mb-4 border p-2"
-          onChange={(e) => setFile(e.target.files[0])} 
-        />
+        <div className="bg-white p-6 rounded shadow-lg max-w-lg mx-auto">
+          <input 
+            type="file" 
+            className="mb-4 border p-2 w-full"
+            onChange={(e) => setFile(e.target.files[0])} 
+          />
 
-        <input 
-          type="text" 
-          placeholder="Enter tags (comma separated)" 
-          className="border p-2 w-80 mb-4"
-          onChange={(e) => setTags(e.target.value)} 
-        />
+          <input 
+            type="text" 
+            placeholder="Enter tags (comma separated)" 
+            className="border p-2 w-full mb-4"
+            onChange={(e) => setTags(e.target.value)} 
+          />
 
-        <button 
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={handleUpload}
-        >
-          Upload
-        </button>
+          <button 
+            className="bg-blue-500 text-white px-4 py-2 rounded w-full"
+            onClick={handleUpload}
+          >
+            Upload
+          </button>
+        </div>
       </div>
     </div>
   );
