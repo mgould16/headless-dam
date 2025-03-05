@@ -43,45 +43,46 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen">
-      {/* Sidebar */}
-      <div className="w-64 bg-gray-800 text-white p-6 flex flex-col">
-        <h2 className="text-2xl font-bold mb-6">Headless DAM</h2>
-        <nav className="space-y-4">
-          <a href="#" className="block p-2 bg-gray-700 rounded">Dashboard</a>
-          <a href="#" className="block p-2 hover:bg-gray-700 rounded">Uploads</a>
-          <a href="#" className="block p-2 hover:bg-gray-700 rounded">Manage Tags</a>
-          <a href="#" className="block p-2 hover:bg-gray-700 rounded">Settings</a>
-        </nav>
-      </div>
 
-      {/* Main Content */}
-      <div className="flex-1 p-8 bg-gray-100">
-        <h1 className="text-3xl font-bold mb-6">Upload an Image</h1>
-        
-        <div className="bg-white p-6 rounded shadow-lg max-w-lg mx-auto">
-          <input 
-            type="file" 
-            className="mb-4 border p-2 w-full"
-            onChange={(e) => setFile(e.target.files[0])} 
-          />
+<div className="flex h-screen">
+  {/* Sidebar */}
+  <div className="w-64 bg-gray-800 text-white p-6 flex flex-col">
+    <h2 className="text-2xl font-bold mb-6">Headless DAM</h2>
+    <nav className="space-y-4">
+      <a href="#" className="block p-2 bg-gray-700 rounded">Dashboard</a>
+      <a href="#" className="block p-2 hover:bg-gray-700 rounded">Uploads</a>
+      <a href="#" className="block p-2 hover:bg-gray-700 rounded">Manage Tags</a>
+      <a href="#" className="block p-2 hover:bg-gray-700 rounded">Settings</a>
+    </nav>
+  </div>
 
-          <input 
-            type="text" 
-            placeholder="Enter tags (comma separated)" 
-            className="border p-2 w-full mb-4"
-            onChange={(e) => setTags(e.target.value)} 
-          />
+  {/* Main Content */}
+  <div className="flex-1 p-8 bg-gray-100">
+    <h1 className="text-3xl font-bold mb-6">Upload an Image</h1>
 
-          <button 
-            className="bg-blue-500 text-white px-4 py-2 rounded w-full"
-            onClick={handleUpload}
-          >
-            Upload
-          </button>
-        </div>
-      </div>
+    <div className="bg-white p-6 rounded shadow-lg max-w-lg mx-auto">
+      <input 
+        type="file" 
+        className="mb-4 border p-2 w-full"
+        onChange={(e) => setFile(e.target.files[0])} 
+      />
+
+      <input 
+        type="text" 
+        placeholder="Enter tags (comma separated)" 
+        className="border p-2 w-full mb-4"
+        onChange={(e) => setTags(e.target.value)} 
+      />
+
+      <button 
+        className="bg-blue-500 text-white px-4 py-2 rounded w-full"
+        onClick={handleUpload}
+      >
+        Upload
+      </button>
     </div>
+  </div>
+</div>
   );
 }
 
