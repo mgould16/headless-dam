@@ -1,5 +1,4 @@
 import { useState } from "react";
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -27,7 +26,16 @@ function App() {
       const data = await response.json();
       
       console.log("Upload successful!", data);
-      alert("Image uploaded successfully!");
+      
+      // Display a styled success message instead of an alert
+      const successMessage = document.createElement("div");
+      successMessage.className = "fixed top-4 right-4 bg-green-500 text-white p-4 rounded shadow-lg";
+      successMessage.innerText = "✅ Image uploaded successfully!";
+      document.body.appendChild(successMessage);
+      
+      setTimeout(() => {
+        successMessage.remove();
+      }, 3000);
     } catch (error) {
       console.error("Upload failed", error);
       alert("Upload failed.");
@@ -35,24 +43,9 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-
+    <div className="App min-h-screen flex flex-col items-center justify-start">
       {/* Upload Section */}
-      <div className="flex flex-col items-center justify-center p-8 bg-gray-100 min-h-screen">
+      <div className="flex flex-col items-center justify-center p-8 bg-gray-100 w-full">
         <h1 className="text-3xl font-bold mb-6">Upload an Image</h1>
         
         <input 
